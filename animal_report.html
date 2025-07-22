@@ -1,0 +1,1754 @@
+
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Animal Names and Collateral Adjectives Report</title>
+            <style>
+                
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            max-width: 1200px;
+            margin: 0 auto 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .stat-card h3 {
+            color: #666;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .content h2 {
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+        
+        .animal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        
+        .animal-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        .animal-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .animal-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .animal-info {
+            padding: 1.5rem;
+        }
+        
+        .animal-name {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+        
+        .adjective {
+            color: #666;
+            font-size: 0.95rem;
+        }
+        
+        .adjective em {
+            color: #667eea;
+            font-weight: 600;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .stats {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+            
+            .animal-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+            </style>
+        </head>
+        <body>
+            <header>
+                <h1>Animal Names and Collateral Adjectives</h1>
+                <p class="subtitle">Scraped from Wikipedia's List of Animal Names</p>
+            </header>
+            
+            <div class="stats">
+                <div class="stat-card">
+                    <h3>Total Entries</h3>
+                    <p class="stat-number">195</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Unique Animals</h3>
+                    <p class="stat-number">195</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Unique Adjectives</h3>
+                    <p class="stat-number">151</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Images Downloaded</h3>
+                    <p class="stat-number">194</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Execution Time</h3>
+                    <p class="stat-number">158.7s</p>
+                </div>
+            </div>
+            
+            <div class="content">
+                <h2>Animal Entries (195 total)</h2>
+                <div class="animal-grid">
+                    
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Aves_236bb065.png" alt="Aves" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Aves</h3>
+                    <p class="adjective">Collateral adjective: <em>avian</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Bovinae_7d6922db.jpg" alt="Bovinae" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Bovinae</h3>
+                    <p class="adjective">Collateral adjective: <em>bovine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Caninae_e8234c3f.jpg" alt="Caninae" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Caninae</h3>
+                    <p class="adjective">Collateral adjective: <em>canine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Cetacea_a13e61e5.jpg" alt="Cetacea" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Cetacea</h3>
+                    <p class="adjective">Collateral adjective: <em>cetacean</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Equidae_c969da4a.jpg" alt="Equidae" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Equidae</h3>
+                    <p class="adjective">Collateral adjective: <em>equine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Felidae_83ed6f61.jpg" alt="Felidae" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Felidae</h3>
+                    <p class="adjective">Collateral adjective: <em>feline</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Suinae_ee6d2c97.jpg" alt="Suinae" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Suinae</h3>
+                    <p class="adjective">Collateral adjective: <em>porcine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Mustelidae_4b74b9c8.jpg" alt="Mustelidae" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Mustelidae</h3>
+                    <p class="adjective">Collateral adjective: <em>mustelid</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Leporidae_be6c3e84.jpg" alt="Leporidae" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Leporidae</h3>
+                    <p class="adjective">Collateral adjective: <em>leporid</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Osteichthyes_d9fdb034.jpg" alt="Osteichthyes" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Osteichthyes</h3>
+                    <p class="adjective">Collateral adjective: <em>piscine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Albatross_b6fca3f7.jpg" alt="Albatross" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Albatross</h3>
+                    <p class="adjective">Collateral adjective: <em>diomedeid diomedeine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Alligator_5e769b51.png" alt="Alligator" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Alligator</h3>
+                    <p class="adjective">Collateral adjective: <em>alligatorid alligatorine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Alpaca_304318c5.jpg" alt="Alpaca" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Alpaca</h3>
+                    <p class="adjective">Collateral adjective: <em>camelid</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Ant_f6e71a2b.jpg" alt="Ant" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Ant</h3>
+                    <p class="adjective">Collateral adjective: <em>formicid formicine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Antelope_046c0c9f.jpg" alt="Antelope" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Antelope</h3>
+                    <p class="adjective">Collateral adjective: <em>antilopine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Ape_a31ad525.jpg" alt="Ape" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Ape</h3>
+                    <p class="adjective">Collateral adjective: <em>simian</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Armadillo_04b82907.jpg" alt="Armadillo" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Armadillo</h3>
+                    <p class="adjective">Collateral adjective: <em>cingulatan chlamyphorid chlamyphorine dasypodid dasypodine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Ass_1c425eb3.png" alt="Ass" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Ass</h3>
+                    <p class="adjective">Collateral adjective: <em>asinine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Baboon_7f2548b0.jpg" alt="Baboon" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Baboon</h3>
+                    <p class="adjective">Collateral adjective: <em>—</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Badger_3ecfbddf.jpg" alt="Badger" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Badger</h3>
+                    <p class="adjective">Collateral adjective: <em>mustelid musteline</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Bat_ea1ffbea.jpg" alt="Bat" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Bat</h3>
+                    <p class="adjective">Collateral adjective: <em>vespertilionid vespertilionine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Bear_c75464c6.jpg" alt="Bear" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Bear</h3>
+                    <p class="adjective">Collateral adjective: <em>ursid ursine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Beaver_955efe6f.jpg" alt="Beaver" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Beaver</h3>
+                    <p class="adjective">Collateral adjective: <em>castorid castorine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Bee_87494a10.jpg" alt="Bee" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Bee</h3>
+                    <p class="adjective">Collateral adjective: <em>anthophilan apid apine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Beetle_d3ee01de.png" alt="Beetle" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Beetle</h3>
+                    <p class="adjective">Collateral adjective: <em>scarabaeid scarabaeine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Binturong_167d8c99.jpg" alt="Binturong" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Binturong</h3>
+                    <p class="adjective">Collateral adjective: <em>potosine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Boar_a7639dd5.jpg" alt="Boar" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Boar</h3>
+                    <p class="adjective">Collateral adjective: <em>—</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Bobcat_e8b38577.jpg" alt="Bobcat" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Bobcat</h3>
+                    <p class="adjective">Collateral adjective: <em>feline</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Bull_da4e6694.jpg" alt="Bull" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Bull</h3>
+                    <p class="adjective">Collateral adjective: <em>N/A</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Butterfly_3ca59d38.jpg" alt="Butterfly" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Butterfly</h3>
+                    <p class="adjective">Collateral adjective: <em>papilionine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Camel_960d77b6.jpg" alt="Camel" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Camel</h3>
+                    <p class="adjective">Collateral adjective: <em>camelid cameline</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Cardinal_652a687d.png" alt="Cardinal" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Cardinal</h3>
+                    <p class="adjective">Collateral adjective: <em>cardinalid cardinaline</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Cat_004f4374.jpg" alt="Cat" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Cat</h3>
+                    <p class="adjective">Collateral adjective: <em>feline</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                
+                <div class="animal-info">
+                    <h3 class="animal-name">Cattle [ c ]</h3>
+                    <p class="adjective">Collateral adjective: <em>bovine [ d ] taurine vaccine vituline</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Cheetah_835fff62.jpg" alt="Cheetah" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Cheetah</h3>
+                    <p class="adjective">Collateral adjective: <em>feline</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Chicken_74599f98.jpg" alt="Chicken" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Chicken</h3>
+                    <p class="adjective">Collateral adjective: <em>galline</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Chimpanzee_ba28914f.jpg" alt="Chimpanzee" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Chimpanzee</h3>
+                    <p class="adjective">Collateral adjective: <em>simian</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Chinchilla_e2eed319.jpg" alt="Chinchilla" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Chinchilla</h3>
+                    <p class="adjective">Collateral adjective: <em>chinchillid chinchilline</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Chough_d1ebfadc.jpg" alt="Chough" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Chough</h3>
+                    <p class="adjective">Collateral adjective: <em>pyrrhocoracine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Cobra_d8fb23ad.jpg" alt="Cobra" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Cobra</h3>
+                    <p class="adjective">Collateral adjective: <em>elapid elapine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Cockroach_dce109fc.png" alt="Cockroach" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Cockroach</h3>
+                    <p class="adjective">Collateral adjective: <em>blattodean blattid blattine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Cod_8c25c398.png" alt="Cod" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Cod</h3>
+                    <p class="adjective">Collateral adjective: <em>gadid gadine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Cormorant_4441fdeb.jpg" alt="Cormorant" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Cormorant</h3>
+                    <p class="adjective">Collateral adjective: <em>phalacrocoracid phalacrocoracine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Cow_771c3e07.jpg" alt="Cow" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Cow</h3>
+                    <p class="adjective">Collateral adjective: <em>N/A</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Crab_71fbc60f.jpg" alt="Crab" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Crab</h3>
+                    <p class="adjective">Collateral adjective: <em>brachyuran cancrine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Crane_652a687d.png" alt="Crane" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Crane</h3>
+                    <p class="adjective">Collateral adjective: <em>alectorid alectorine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Crocodile_38805562.jpg" alt="Crocodile" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Crocodile</h3>
+                    <p class="adjective">Collateral adjective: <em>crocodilian suchian</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Crow_9a922dcb.jpg" alt="Crow" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Crow</h3>
+                    <p class="adjective">Collateral adjective: <em>corvine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Deer_be681547.jpg" alt="Deer" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Deer</h3>
+                    <p class="adjective">Collateral adjective: <em>cervid cervine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Dog_2acf5038.jpg" alt="Dog" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Dog</h3>
+                    <p class="adjective">Collateral adjective: <em>canid canine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Dogfish_652a687d.png" alt="Dogfish" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Dogfish</h3>
+                    <p class="adjective">Collateral adjective: <em>selachian squaloid</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Dolphin_1c425eb3.png" alt="Dolphin" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Dolphin</h3>
+                    <p class="adjective">Collateral adjective: <em>delphine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Donkey_fde735b0.jpg" alt="Donkey" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Donkey</h3>
+                    <p class="adjective">Collateral adjective: <em>N/A</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Dove_fa29aeac.jpg" alt="Dove" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Dove</h3>
+                    <p class="adjective">Collateral adjective: <em>columbid columbine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Duck_16dfe610.jpg" alt="Duck" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Duck</h3>
+                    <p class="adjective">Collateral adjective: <em>anatid anatine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Dunlin_4dcdde1e.jpg" alt="Dunlin" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Dunlin</h3>
+                    <p class="adjective">Collateral adjective: <em>scolopacid scolopacine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Eagle_5c947518.jpg" alt="Eagle" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Eagle</h3>
+                    <p class="adjective">Collateral adjective: <em>aquiline accipitrid accipitrine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Echidna_6cadf66c.jpg" alt="Echidna" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Echidna</h3>
+                    <p class="adjective">Collateral adjective: <em>tachyglossid tachyglossine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Eel_67694128.jpg" alt="Eel" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Eel</h3>
+                    <p class="adjective">Collateral adjective: <em>anguillid anguilline</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Elephant_453c3e70.jpg" alt="Elephant" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Elephant</h3>
+                    <p class="adjective">Collateral adjective: <em>pachyderm elephantid elephantine proboscidean proboscine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Elk_3739e855.jpg" alt="Elk" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Elk</h3>
+                    <p class="adjective">Collateral adjective: <em>cervid cervine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Emu_5de9d45a.jpg" alt="Emu" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Emu</h3>
+                    <p class="adjective">Collateral adjective: <em>—</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Falcon_2065ae25.jpg" alt="Falcon" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Falcon</h3>
+                    <p class="adjective">Collateral adjective: <em>falconid falconine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Ferret_428f01f6.png" alt="Ferret" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Ferret</h3>
+                    <p class="adjective">Collateral adjective: <em>mustelid musteline</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Finch_53471d06.jpg" alt="Finch" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Finch</h3>
+                    <p class="adjective">Collateral adjective: <em>fringilline</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Flamingo_4cd3ecd3.jpg" alt="Flamingo" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Flamingo</h3>
+                    <p class="adjective">Collateral adjective: <em>phoenicopterid phoenicopterine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Fly_ac70349d.jpg" alt="Fly" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Fly</h3>
+                    <p class="adjective">Collateral adjective: <em>muscid muscine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Fox_c1914b40.jpg" alt="Fox" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Fox</h3>
+                    <p class="adjective">Collateral adjective: <em>vulpine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Frog_ca848d84.jpg" alt="Frog" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Frog</h3>
+                    <p class="adjective">Collateral adjective: <em>ranid ranine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Gecko_1db042dc.jpg" alt="Gecko" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Gecko</h3>
+                    <p class="adjective">Collateral adjective: <em>—</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Gerbil_386074ee.jpg" alt="Gerbil" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Gerbil</h3>
+                    <p class="adjective">Collateral adjective: <em>gerbilline</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Giant_panda_91e5a593.jpg" alt="Giant panda" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Giant panda</h3>
+                    <p class="adjective">Collateral adjective: <em>ailuropodid ailuropodine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Giraffe_f2ad6493.jpg" alt="Giraffe" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Giraffe</h3>
+                    <p class="adjective">Collateral adjective: <em>giraffid giraffine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Gnat_23955483.jpg" alt="Gnat" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Gnat</h3>
+                    <p class="adjective">Collateral adjective: <em>—</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Gnu_f5bb5abf.jpg" alt="Gnu" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Gnu</h3>
+                    <p class="adjective">Collateral adjective: <em>—</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Goat_522fdb4f.jpg" alt="Goat" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Goat</h3>
+                    <p class="adjective">Collateral adjective: <em>caprid caprine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Goldfinch_652a687d.png" alt="Goldfinch" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Goldfinch</h3>
+                    <p class="adjective">Collateral adjective: <em>cardueline</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Goosander_972c2248.jpg" alt="Goosander" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Goosander</h3>
+                    <p class="adjective">Collateral adjective: <em>—</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Goose_1c425eb3.png" alt="Goose" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Goose</h3>
+                    <p class="adjective">Collateral adjective: <em>anatid anatine anserine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Gorilla_358774c3.jpg" alt="Gorilla" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Gorilla</h3>
+                    <p class="adjective">Collateral adjective: <em>simian</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Goshawk_652a687d.png" alt="Goshawk" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Goshawk</h3>
+                    <p class="adjective">Collateral adjective: <em>—</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Grasshopper_3bf8c2bd.jpg" alt="Grasshopper" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Grasshopper</h3>
+                    <p class="adjective">Collateral adjective: <em>caeliferian</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Grouse_ccd2bfb4.jpg" alt="Grouse" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Grouse</h3>
+                    <p class="adjective">Collateral adjective: <em>tetraonid tetraonine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Guanaco_99d352b2.jpg" alt="Guanaco" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Guanaco</h3>
+                    <p class="adjective">Collateral adjective: <em>camelid cameline</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Guinea_fowl_0759cf43.jpg" alt="Guinea fowl" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Guinea fowl</h3>
+                    <p class="adjective">Collateral adjective: <em>numidid numidine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Guinea_pig_40140cf4.jpg" alt="Guinea pig" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Guinea pig</h3>
+                    <p class="adjective">Collateral adjective: <em>—</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Hamster_64464913.jpg" alt="Hamster" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Hamster</h3>
+                    <p class="adjective">Collateral adjective: <em>cricetid cricetine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Hare_8e552566.jpg" alt="Hare" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Hare</h3>
+                    <p class="adjective">Collateral adjective: <em>leporine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Hawk_731ef960.jpg" alt="Hawk" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Hawk</h3>
+                    <p class="adjective">Collateral adjective: <em>accipitrine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Hedgehog_310fc8b8.jpg" alt="Hedgehog" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Hedgehog</h3>
+                    <p class="adjective">Collateral adjective: <em>erinaceine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Heron_92ef8538.jpg" alt="Heron" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Heron</h3>
+                    <p class="adjective">Collateral adjective: <em>ardeid ardeine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Herring_8c25c398.png" alt="Herring" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Herring</h3>
+                    <p class="adjective">Collateral adjective: <em>clupeid clupeine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Hippopotamus_abdfc8c7.jpg" alt="Hippopotamus" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Hippopotamus</h3>
+                    <p class="adjective">Collateral adjective: <em>hippopotamid hippopotamine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Hornet_a6a5aab4.jpg" alt="Hornet" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Hornet</h3>
+                    <p class="adjective">Collateral adjective: <em>vespid vespine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Horse_533238ca.jpg" alt="Horse" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Horse</h3>
+                    <p class="adjective">Collateral adjective: <em>caballine equid equine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Human_00eceb22.jpg" alt="Human" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Human</h3>
+                    <p class="adjective">Collateral adjective: <em>human simian</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Hyena_2f79a60e.jpg" alt="Hyena" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Hyena</h3>
+                    <p class="adjective">Collateral adjective: <em>hyenid hyenine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Jaguar_76bd9006.jpg" alt="Jaguar" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Jaguar</h3>
+                    <p class="adjective">Collateral adjective: <em>—</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Jay_4e01c3fe.jpg" alt="Jay" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Jay</h3>
+                    <p class="adjective">Collateral adjective: <em>corvid corvine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Jellyfish_b901be1a.jpg" alt="Jellyfish" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Jellyfish</h3>
+                    <p class="adjective">Collateral adjective: <em>medusozoan</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Junglefowl_94ac99bf.jpg" alt="Junglefowl" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Junglefowl</h3>
+                    <p class="adjective">Collateral adjective: <em>N/A</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Kangaroo_2c85c028.jpg" alt="Kangaroo" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Kangaroo</h3>
+                    <p class="adjective">Collateral adjective: <em>macropodine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Kingbird_763e9b26.jpg" alt="Kingbird" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Kingbird</h3>
+                    <p class="adjective">Collateral adjective: <em>—</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Kinkajou_e2ec31c5.jpg" alt="Kinkajou" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Kinkajou</h3>
+                    <p class="adjective">Collateral adjective: <em>potosine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Koala_01aa53c7.jpg" alt="Koala" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Koala</h3>
+                    <p class="adjective">Collateral adjective: <em>phascolarctid phascolarctine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Ladybug_a00ecbf7.jpg" alt="Ladybug" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Ladybug</h3>
+                    <p class="adjective">Collateral adjective: <em>coccinellid coccinelline</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Lapwing_90c75524.jpg" alt="Lapwing" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Lapwing</h3>
+                    <p class="adjective">Collateral adjective: <em>vanelline</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Lark_e537b4a9.jpg" alt="Lark" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Lark</h3>
+                    <p class="adjective">Collateral adjective: <em>alaudine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Lemur_510fea7d.jpg" alt="Lemur" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Lemur</h3>
+                    <p class="adjective">Collateral adjective: <em>lemurine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Leopard_5bce2894.jpg" alt="Leopard" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Leopard</h3>
+                    <p class="adjective">Collateral adjective: <em>leopardine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Lion_8ad3a471.jpg" alt="Lion" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Lion</h3>
+                    <p class="adjective">Collateral adjective: <em>leonine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Lizard_60d806a4.jpg" alt="Lizard" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Lizard</h3>
+                    <p class="adjective">Collateral adjective: <em>—</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Llama_7f037c1f.jpg" alt="Llama" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Llama</h3>
+                    <p class="adjective">Collateral adjective: <em>camelid</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Lobster_c0ce7879.jpg" alt="Lobster" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Lobster</h3>
+                    <p class="adjective">Collateral adjective: <em>nephropoid nephropid nephropine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Locust_8c25c398.png" alt="Locust" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Locust</h3>
+                    <p class="adjective">Collateral adjective: <em>caeliferan</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Lyrebird_d7278f6c.jpg" alt="Lyrebird" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Lyrebird</h3>
+                    <p class="adjective">Collateral adjective: <em>menurine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Mallard_2f20b635.jpg" alt="Mallard" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Mallard</h3>
+                    <p class="adjective">Collateral adjective: <em>anatid anatine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Meerkat_1b713550.jpg" alt="Meerkat" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Meerkat</h3>
+                    <p class="adjective">Collateral adjective: <em>herpestine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Mole_652a687d.png" alt="Mole" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Mole</h3>
+                    <p class="adjective">Collateral adjective: <em>talpine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Mongoose_bb6d0641.png" alt="Mongoose" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Mongoose</h3>
+                    <p class="adjective">Collateral adjective: <em>hespertid herpestine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Monkey_d8ceae56.jpg" alt="Monkey" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Monkey</h3>
+                    <p class="adjective">Collateral adjective: <em>simian</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Moose_ca3cda1b.jpg" alt="Moose" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Moose</h3>
+                    <p class="adjective">Collateral adjective: <em>alceine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Mosquito_03696424.jpg" alt="Mosquito" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Mosquito</h3>
+                    <p class="adjective">Collateral adjective: <em>culicid culicine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Moth_83539a58.jpg" alt="Moth" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Moth</h3>
+                    <p class="adjective">Collateral adjective: <em>lepidopteran</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Mouse_1c425eb3.png" alt="Mouse" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Mouse</h3>
+                    <p class="adjective">Collateral adjective: <em>murid murine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Narwhal_8793eac3.jpg" alt="Narwhal" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Narwhal</h3>
+                    <p class="adjective">Collateral adjective: <em>cetacean cetaceous monodontid monodontine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Newt_1e7f5683.jpg" alt="Newt" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Newt</h3>
+                    <p class="adjective">Collateral adjective: <em>pleurodeline</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Nightingale_e47bbbba.jpg" alt="Nightingale" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Nightingale</h3>
+                    <p class="adjective">Collateral adjective: <em>philomelian</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Octopus_2f3632be.jpg" alt="Octopus" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Octopus</h3>
+                    <p class="adjective">Collateral adjective: <em>octopodid octopodine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Opossum_332806a6.jpg" alt="Opossum" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Opossum</h3>
+                    <p class="adjective">Collateral adjective: <em>didelphid didelphine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Otter_cd10f153.jpg" alt="Otter" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Otter</h3>
+                    <p class="adjective">Collateral adjective: <em>lutrine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Ox_2c788b88.png" alt="Ox" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Ox</h3>
+                    <p class="adjective">Collateral adjective: <em>N/A</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Owl_a23c6767.jpg" alt="Owl" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Owl</h3>
+                    <p class="adjective">Collateral adjective: <em>strigid strigine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Oyster_e484751f.jpg" alt="Oyster" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Oyster</h3>
+                    <p class="adjective">Collateral adjective: <em>ostreoid ostreid ostreine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Panther_652a687d.png" alt="Panther" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Panther</h3>
+                    <p class="adjective">Collateral adjective: <em>pantherine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Panda_91e5a593.jpg" alt="Panda" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Panda</h3>
+                    <p class="adjective">Collateral adjective: <em>N/A</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Partridge_282e2cb9.jpg" alt="Partridge" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Partridge</h3>
+                    <p class="adjective">Collateral adjective: <em>pavonine phasianine rolluline</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Peafowl_6ae03e0b.jpg" alt="Peafowl" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Peafowl</h3>
+                    <p class="adjective">Collateral adjective: <em>pavonine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Peccary_698ca65e.jpg" alt="Peccary" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Peccary</h3>
+                    <p class="adjective">Collateral adjective: <em>—</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Pelican_5af35b20.jpg" alt="Pelican" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Pelican</h3>
+                    <p class="adjective">Collateral adjective: <em>pelecanid pelecanine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Penguin_86a2afbf.jpg" alt="Penguin" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Penguin</h3>
+                    <p class="adjective">Collateral adjective: <em>spheniscid spheniscine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Pheasant_b143b205.jpg" alt="Pheasant" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Pheasant</h3>
+                    <p class="adjective">Collateral adjective: <em>phasianid phasianine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Pig_22b4c4fe.jpg" alt="Pig" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Pig</h3>
+                    <p class="adjective">Collateral adjective: <em>porcine suine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Pigeon_fa29aeac.jpg" alt="Pigeon" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Pigeon</h3>
+                    <p class="adjective">Collateral adjective: <em>columbid columbine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Platypus_8a7f2cf1.jpg" alt="Platypus" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Platypus</h3>
+                    <p class="adjective">Collateral adjective: <em>ornithorhynchid ornithorhynchine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Polar_bear_3d2dc0bb.jpg" alt="Polar bear" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Polar bear</h3>
+                    <p class="adjective">Collateral adjective: <em>ursid ursine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Pony_e7235396.jpg" alt="Pony" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Pony</h3>
+                    <p class="adjective">Collateral adjective: <em>N/A</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Porcupine_348f0cde.jpg" alt="Porcupine" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Porcupine</h3>
+                    <p class="adjective">Collateral adjective: <em>hystricine hystricid erethizobtid erethizontine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Prairie_dog_3dcbc16b.jpg" alt="Prairie dog" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Prairie dog</h3>
+                    <p class="adjective">Collateral adjective: <em>cynomurid cynomurine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Pug_1a266604.jpg" alt="Pug" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Pug</h3>
+                    <p class="adjective">Collateral adjective: <em>—</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Quail_230dade6.jpg" alt="Quail" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Quail</h3>
+                    <p class="adjective">Collateral adjective: <em>phasianid phasianine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Rabbit_0b2c84a3.jpg" alt="Rabbit" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Rabbit</h3>
+                    <p class="adjective">Collateral adjective: <em>leporid leporine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Raccoon_98b9f023.jpg" alt="Raccoon" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Raccoon</h3>
+                    <p class="adjective">Collateral adjective: <em>procyonid procyonine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Ram_652a687d.png" alt="Ram" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Ram</h3>
+                    <p class="adjective">Collateral adjective: <em>arietine ovine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Rat_1d9f290b.jpg" alt="Rat" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Rat</h3>
+                    <p class="adjective">Collateral adjective: <em>murid murine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Raven_48619b98.jpg" alt="Raven" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Raven</h3>
+                    <p class="adjective">Collateral adjective: <em>corvid corvine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Rhinoceros_9ad61435.png" alt="Rhinoceros" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Rhinoceros</h3>
+                    <p class="adjective">Collateral adjective: <em>rhinocerotid rhinocerotine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Rook_652a687d.png" alt="Rook" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Rook</h3>
+                    <p class="adjective">Collateral adjective: <em>—</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Salamander_2385779e.jpg" alt="Salamander" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Salamander</h3>
+                    <p class="adjective">Collateral adjective: <em>caudatan salamandrid salamandrine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Salmon_276f5380.jpg" alt="Salmon" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Salmon</h3>
+                    <p class="adjective">Collateral adjective: <em>salmonine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Sand_dollar_e5dec78e.jpg" alt="Sand dollar" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Sand dollar</h3>
+                    <p class="adjective">Collateral adjective: <em>clypeasteroid clypeasterid clypeasterine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Sandpiper_7697c4c3.jpg" alt="Sandpiper" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Sandpiper</h3>
+                    <p class="adjective">Collateral adjective: <em>scolopacid scolopacine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Sardine_2e0e2aff.jpg" alt="Sardine" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Sardine</h3>
+                    <p class="adjective">Collateral adjective: <em>—</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Seahorse_7ffce815.jpg" alt="Seahorse" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Seahorse</h3>
+                    <p class="adjective">Collateral adjective: <em>hippocampine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Seal_bec2e57b.png" alt="Seal" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Seal</h3>
+                    <p class="adjective">Collateral adjective: <em>pinnipedian phocid phocine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Sea_otter_c8d14a34.jpg" alt="Sea otter" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Sea otter</h3>
+                    <p class="adjective">Collateral adjective: <em>lutrine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Shark_3dab8319.jpg" alt="Shark" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Shark</h3>
+                    <p class="adjective">Collateral adjective: <em>selachian squaloid</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Sheep_208d3901.jpg" alt="Sheep" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Sheep</h3>
+                    <p class="adjective">Collateral adjective: <em>ovine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Skunk_8532956b.jpg" alt="Skunk" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Skunk</h3>
+                    <p class="adjective">Collateral adjective: <em>mephitid mephitine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Snail_ece00ea8.jpg" alt="Snail" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Snail</h3>
+                    <p class="adjective">Collateral adjective: <em>gastropodine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Snake_56b063d3.jpg" alt="Snake" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Snake</h3>
+                    <p class="adjective">Collateral adjective: <em>anguine elapine ophidian serpentine viperine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Spider_aea8d666.jpg" alt="Spider" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Spider</h3>
+                    <p class="adjective">Collateral adjective: <em>arachnid</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Spoonbill_d3122509.jpg" alt="Spoonbill" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Spoonbill</h3>
+                    <p class="adjective">Collateral adjective: <em>plataleine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Squid_b48d6277.jpg" alt="Squid" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Squid</h3>
+                    <p class="adjective">Collateral adjective: <em>teuthine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Squirrel_4e6b7405.jpg" alt="Squirrel" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Squirrel</h3>
+                    <p class="adjective">Collateral adjective: <em>sciurid sciurine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Starfish_7e00a12c.png" alt="Starfish" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Starfish</h3>
+                    <p class="adjective">Collateral adjective: <em>asteroid galaxy</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Starling_7f767211.jpg" alt="Starling" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Starling</h3>
+                    <p class="adjective">Collateral adjective: <em>sturnid sturnine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Stingray_d3a9b71f.jpg" alt="Stingray" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Stingray</h3>
+                    <p class="adjective">Collateral adjective: <em>myliobatoid</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Swan_5bdaac9d.jpg" alt="Swan" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Swan</h3>
+                    <p class="adjective">Collateral adjective: <em>cygnine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Termite_9ac00fb5.jpg" alt="Termite" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Termite</h3>
+                    <p class="adjective">Collateral adjective: <em>termitid termitine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Thrush_652a687d.png" alt="Thrush" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Thrush</h3>
+                    <p class="adjective">Collateral adjective: <em>turdid turdine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Tiger_437a6e99.jpg" alt="Tiger" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Tiger</h3>
+                    <p class="adjective">Collateral adjective: <em>tigrine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Toad_2e6709fc.jpg" alt="Toad" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Toad</h3>
+                    <p class="adjective">Collateral adjective: <em>batrachian ranid ranine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Toucan_918c7a5b.jpg" alt="Toucan" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Toucan</h3>
+                    <p class="adjective">Collateral adjective: <em>ramphastid ramphastine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Turkey_7290179c.png" alt="Turkey" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Turkey</h3>
+                    <p class="adjective">Collateral adjective: <em>—</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Turtle_b65ce4ee.jpg" alt="Turtle" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Turtle</h3>
+                    <p class="adjective">Collateral adjective: <em>testudine chelonian</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Viper_3a96523a.jpg" alt="Viper" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Viper</h3>
+                    <p class="adjective">Collateral adjective: <em>viperine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Wallaby_1c425eb3.png" alt="Wallaby" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Wallaby</h3>
+                    <p class="adjective">Collateral adjective: <em>—</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Wasp_a1c93103.jpg" alt="Wasp" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Wasp</h3>
+                    <p class="adjective">Collateral adjective: <em>vespine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Weasel_73e05353.jpg" alt="Weasel" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Weasel</h3>
+                    <p class="adjective">Collateral adjective: <em>mustelid musteline</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Whale_19f76141.jpg" alt="Whale" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Whale</h3>
+                    <p class="adjective">Collateral adjective: <em>cetacean balaenine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Wildebeest_f5bb5abf.jpg" alt="Wildebeest" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Wildebeest</h3>
+                    <p class="adjective">Collateral adjective: <em>connochaetine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Wolf_5a0d2fc7.jpg" alt="Wolf" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Wolf</h3>
+                    <p class="adjective">Collateral adjective: <em>canine lupine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Wombat_2643b10c.jpg" alt="Wombat" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Wombat</h3>
+                    <p class="adjective">Collateral adjective: <em>vombatid vombatine</em></p>
+                </div>
+            </div>
+            
+            <div class="animal-card">
+                <img src="file://C:\Users\GZ55WB\AppData\Local\Temp\animal_images\Zebra_3a5bbfec.jpg" alt="Zebra" class="animal-image">
+                <div class="animal-info">
+                    <h3 class="animal-name">Zebra</h3>
+                    <p class="adjective">Collateral adjective: <em>hippotigrine zebrine</em></p>
+                </div>
+            </div>
+            
+                </div>
+            </div>
+            
+            <footer>
+                <p>Generated on 2025-07-22 14:28:50</p>
+            </footer>
+        </body>
+        </html>
+        
