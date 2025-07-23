@@ -89,39 +89,38 @@ class AnimalScraper:
     
     @timing_decorator
     async def _create_animal_entries(self, data_list: List[Tuple[str, str, List[str]]]) -> List[AnimalEntry]:
-        """
-        Create AnimalEntry objects from a list of tuples:
-        (animal_name, collateral_adjective, list_of_links).
-        """
-        entries = []
-
         timeout = aiohttp.ClientTimeout(total=self.config.request_timeout)
         connector = aiohttp.TCPConnector(limit_per_host=self.config.max_concurrent_downloads)
 
+        semaphore = asyncio.Semaphore(self.config.max_concurrent_downloads)
+
         async with aiohttp.ClientSession(connector=connector, timeout=timeout, headers={'User-Agent': 'AnimalScraper/1.0'}) as session:
 
-            for animal_name, adjective, links in data_list:
-                try:
-                    image_url = None
+            async def create_entry(animal_name, adjective, links):
+                async with semaphore:
+                    try:
+                        image_url = None
 
-                    if links:
-                        image_url = await self.image_finder.find_image_from_url_async(links[0], session)
+                        if links:
+                            image_url = await self.image_finder.find_image_from_url_async(links[0], session)
 
-                    if not image_url:
-                        image_url = self.image_finder.find_animal_image(animal_name)
+                        if not image_url:
+                            image_url = self.image_finder.find_animal_image(animal_name)
 
-                    entry = AnimalEntry(
-                        animal_name=animal_name,
-                        collateral_adjective=adjective if adjective.strip() else "N/A",
-                        image_url=image_url if image_url else "N/A"
-                    )
-                    entries.append(entry)
+                        return AnimalEntry(
+                            animal_name=animal_name,
+                            collateral_adjective=adjective if adjective.strip() else "N/A",
+                            image_url=image_url if image_url else "N/A"
+                        )
+                    except Exception as e:
+                        logger.warning(f"Error creating entry for {animal_name}: {str(e)}")
+                        return None
 
-                except Exception as e:
-                    logger.warning(f"Error creating entry for {animal_name}: {str(e)}")
-                    continue
+            tasks = [create_entry(animal_name, adjective, links) for animal_name, adjective, links in data_list]
 
-        return entries
+            entries = await asyncio.gather(*tasks)
+
+            return [e for e in entries if e is not None]
 
     @timing_decorator
     async def _download_images(self, animal_entries: List[AnimalEntry]) -> List[AnimalEntry]:

@@ -8,6 +8,7 @@ from unittest.mock import AsyncMock
 
 from src.core.scraper import AnimalScraper
 from src.core.models import AnimalEntry
+from src.utils.config_loader import load_config
 
 @pytest.fixture
 def parser():
@@ -72,5 +73,12 @@ async def test_create_animal_entries_basic():
         assert isinstance(entry, AnimalEntry)
         assert entry.animal_name in ["Cat", "Dog"]
         assert entry.collateral_adjective in ["feline", "canine"]
-        # התמונה צריכה להיות כתובת שהמוק מחזיר
         assert entry.image_url == "https://example.com/image.jpg"
+
+def test_config_keywords():
+    config = load_config()
+    assert "collateral_keywords" in config
+    assert "trivial_name_keywords" in config
+    assert isinstance(config["collateral_keywords"], list)
+    assert isinstance(config["trivial_name_keywords"], list)
+

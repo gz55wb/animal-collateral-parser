@@ -1,0 +1,16 @@
+collateral_keywords:
+  - "collateral adjective"
+
+trivial_name_keywords:
+  - "animal"
+  - "scientific term"
+  - "common name"
+  - "trivial name"
+
+text_cleanup_regex:
+  - pattern: "\\[[^\\]]*\\]"         
+  - pattern: "\\([^)]*\\)"           
+  - pattern: "\\b(also )?see\\b.*"   
+  - pattern: "/.*"                   
+  - pattern: "\\s+"                  
+

@@ -3,8 +3,14 @@ from typing import Dict, List, Tuple
 import re
 import logging
 from src.utils.decorators import timing_decorator
+from src.utils.config_loader import load_config
+from src.utils.config_loader import clean_text_with_config
+
 
 logger = logging.getLogger(__name__)
+config = load_config()
+COLLATERAL_KEYWORDS = config["collateral_keywords"]
+TRIVIAL_NAME_KEYWORDS = config["trivial_name_keywords"]
 
 class AnimalDataParser:
 
@@ -28,9 +34,9 @@ class AnimalDataParser:
 
             for idx, cell in enumerate(header_cells):
                 header_text = cell.get_text(strip=True).lower()
-                if 'collateral adjective' in header_text:
+                if any(keyword in header_text for keyword in COLLATERAL_KEYWORDS):
                     collateral_idx = idx
-                if 'scientific term' in header_text or 'animal' in header_text:
+                if any(keyword in header_text for keyword in TRIVIAL_NAME_KEYWORDS):
                     trivial_name_idx = idx
 
             if collateral_idx == -1:
@@ -64,12 +70,8 @@ class AnimalDataParser:
 
     def _extract_text_from_cell(self, cell: Tag) -> str:
         text = cell.get_text(separator=' ', strip=True)
-        text = re.sub(r'\[[^\]]*\]', '', text)  # remove [1], [a], etc.
-        text = re.sub(r'\([^)]*\)', '', text)    # remove ( )
-        text = re.sub(r'\b(also )?see\b.*', '', text, flags=re.IGNORECASE)
-        text = text.split('/')[0]
-        text = re.sub(r'\s+', ' ', text)
-        return text.strip()
+        return clean_text_with_config(text)
+
 
     def _extract_links_from_cell(self, cell: Tag) -> List[str]:
         links = []
