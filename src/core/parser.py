@@ -1,21 +1,18 @@
-from ast import Dict
 from bs4 import BeautifulSoup, Tag
+from typing import Dict, List, Tuple
 import re
 import logging
-from typing import List, Dict
-from src.utils.logger import get_logger
 from src.utils.decorators import timing_decorator
 
-
-logger = get_logger(__name__)
+logger = logging.getLogger(__name__)
 
 class AnimalDataParser:
-    """Parses Wikipedia page to extract animal names and collateral adjectives."""
+
     
     @timing_decorator
-    def parse_wikipedia_page(self, html_content: str) -> Dict[str, List[str]]:
+    def parse_wikipedia_page(self, html_content: str) -> List[Tuple[str, str, List[str]]]:
         soup = BeautifulSoup(html_content, 'html.parser')
-        animal_adjective_pairs = {}
+        animal_data = []
 
         tables = soup.find_all('table', class_='wikitable')
         logger.info(f"Found {len(tables)} tables")
@@ -25,10 +22,9 @@ class AnimalDataParser:
             if not rows:
                 continue
 
-            # מציאת אינדקס העמודה של "Collateral adjective"
             header_cells = rows[0].find_all(['th', 'td'])
             collateral_idx = -1
-            trivial_name_idx = 1  # בדרך כלל שם החיה נמצא בעמודה 1 (יכול להשתנות)
+            trivial_name_idx = 1  # שם החיה לרוב בעמודה 1
 
             for idx, cell in enumerate(header_cells):
                 header_text = cell.get_text(strip=True).lower()
@@ -50,59 +46,35 @@ class AnimalDataParser:
                 if not animal_name:
                     continue
 
+                links = self._extract_links_from_cell(cells[trivial_name_idx])
+
                 collateral_cell = cells[collateral_idx]
-                collateral_text = self._extract_text_from_cell(collateral_cell)
+                adjectives = [
+                    adj.strip()
+                    for adj in re.split(r"[,\s]+", self._extract_text_from_cell(collateral_cell))
+                    if adj.strip()
+                ]
 
-                # לפצל במידה ויש כמה תארים נלווים מופרדים בפסיקים
-                adjectives = [adj.strip() for adj in collateral_text.split(',') if adj.strip()]
-                
-                if animal_name not in animal_adjective_pairs:
-                    animal_adjective_pairs[animal_name] = adjectives
+                for adj in adjectives:
+                    animal_data.append((animal_name, adj, links))
 
-        logger.info(f"Extracted {len(animal_adjective_pairs)} animal-adjective pairs")
-        return  animal_adjective_pairs
+        logger.info(f"Extracted {len(animal_data)} animal-adjective-link triples")
+        return animal_data
 
 
-    
     def _extract_text_from_cell(self, cell: Tag) -> str:
-        """Extract clean primary animal name from a table cell."""
         text = cell.get_text(separator=' ', strip=True)
-
-        # Remove citation markers like [1], [ 80 ], etc.
-        text = re.sub(r'\[\s*\d+\s*\]', '', text)
-
-        # Remove content in parentheses
-        text = re.sub(r'\([^)]*\)', '', text)
-
-        # Remove 'Also see ...' or 'see ...'
+        text = re.sub(r'\[[^\]]*\]', '', text)  # remove [1], [a], etc.
+        text = re.sub(r'\([^)]*\)', '', text)    # remove ( )
         text = re.sub(r'\b(also )?see\b.*', '', text, flags=re.IGNORECASE)
-
-        # Remove everything after slash (if exists)
         text = text.split('/')[0]
-
-        # Remove extra whitespace
         text = re.sub(r'\s+', ' ', text)
-
         return text.strip()
 
-
-
-    
-    # def _is_likely_adjective(self, text: str) -> bool:
-    #     """Check if text is likely a collateral adjective."""
-    #     if not text or len(text) < 2:
-    #         return False
-        
-    #     # Filter out common non-adjective patterns
-    #     exclude_patterns = [
-    #         r'^\d+$',  # Just numbers
-    #         r'^[A-Z]{2,}$',  # All caps abbreviations
-    #         r'species$',  # Ends with 'species'
-    #         r'animal$',  # Ends with 'animal'
-    #     ]
-        
-    #     for pattern in exclude_patterns:
-    #         if re.match(pattern, text, re.IGNORECASE):
-    #             return False
-        
-    #     return True
+    def _extract_links_from_cell(self, cell: Tag) -> List[str]:
+        links = []
+        for a_tag in cell.find_all('a', href=True):
+            href = a_tag['href']
+            if href.startswith('/wiki/'):
+                links.append('https://en.wikipedia.org' + href)
+        return links

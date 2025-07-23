@@ -1,8 +1,10 @@
 import requests
+import asyncio
+import aiohttp
 from bs4 import BeautifulSoup
 from typing import Optional
 from src.utils.logger import get_logger
-from src.utils.decorators import retry_decorator, error_handler_decorator
+from src.utils.decorators import retry_decorator, error_handler_decorator, timing_decorator
 
 logger = get_logger(__name__)
 
@@ -61,4 +63,26 @@ class WikipediaImageFinder:
             return None
         except Exception as e:
             logger.debug(f"Error finding image for {animal_name}: {str(e)}")
+            return None
+
+    @retry_decorator(max_retries=2)
+    @error_handler_decorator(default_return=None)
+    async def find_image_from_url_async(self, url: str, session: aiohttp.ClientSession) -> Optional[str]:
+        try:
+            async with session.get(url, timeout=10) as response:
+                if response.status != 200:
+                    return None
+                content = await response.text()
+                soup = BeautifulSoup(content, 'html.parser')
+                infobox = soup.find('table', class_='infobox')
+                if infobox:
+                    img_tag = infobox.find('img')
+                    if img_tag and img_tag.get('src'):
+                        img_url = img_tag['src']
+                        if img_url.startswith('//'):
+                            img_url = 'https:' + img_url
+                        return img_url
+                return None
+        except Exception as e:
+            logger.debug(f"Error finding image for url {url}: {str(e)}")
             return None

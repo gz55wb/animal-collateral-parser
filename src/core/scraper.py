@@ -2,7 +2,7 @@ import aiohttp
 import time
 import requests
 import asyncio
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List, Optional, Tuple, Any
 from src.core.models import AnimalEntry, ScrapingConfig
 from src.core.parser import AnimalDataParser
 from pathlib import Path
@@ -87,32 +87,43 @@ class AnimalScraper:
         response.raise_for_status()
         return response.text
     
-    async def _create_animal_entries(self, animal_dict: Dict[str, List[str]]) -> List[AnimalEntry]:
-        """Create AnimalEntry objects from a dict of animal names to a list of adjectives."""
+    @timing_decorator
+    async def _create_animal_entries(self, data_list: List[Tuple[str, str, List[str]]]) -> List[AnimalEntry]:
+        """
+        Create AnimalEntry objects from a list of tuples:
+        (animal_name, collateral_adjective, list_of_links).
+        """
         entries = []
-        
 
-        for animal_name, adjectives in animal_dict.items():
-            try:
-                
-                # Get image URL only once per animal
-                image_url = self.image_finder.find_animal_image(animal_name)
+        timeout = aiohttp.ClientTimeout(total=10)
+        connector = aiohttp.TCPConnector(limit_per_host=10)
 
-                
-                entry = AnimalEntry(
-                    animal_name=animal_name,
-                    collateral_adjective=adjectives[0] if len(adjectives) > 0 else "N/A",
-                    image_url=image_url
-                )
-                entries.append(entry)
+        async with aiohttp.ClientSession(connector=connector, timeout=timeout, headers={'User-Agent': 'AnimalScraper/1.0'}) as session:
 
-            except Exception as e:
-                logger.warning(f"Error creating entry for {animal_name}: {str(e)}")
-                continue
+            for animal_name, adjective, links in data_list:
+                try:
+                    image_url = None
+
+                    if links:
+                        image_url = await self.image_finder.find_image_from_url_async(links[0], session)
+
+                    if not image_url:
+                        image_url = await self.image_finder.find_animal_image(animal_name)
+
+                    entry = AnimalEntry(
+                        animal_name=animal_name,
+                        collateral_adjective=adjective if adjective.strip() else "N/A",
+                        image_url=image_url if image_url else "N/A"
+                    )
+                    entries.append(entry)
+
+                except Exception as e:
+                    logger.warning(f"Error creating entry for {animal_name}: {str(e)}")
+                    continue
 
         return entries
 
-    
+    @timing_decorator
     async def _download_images(self, animal_entries: List[AnimalEntry]) -> List[AnimalEntry]:
         """Download images for all animal entries."""
         # Filter entries that have image URLs
