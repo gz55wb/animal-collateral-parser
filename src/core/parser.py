@@ -13,10 +13,26 @@ COLLATERAL_KEYWORDS = config["collateral_keywords"]
 TRIVIAL_NAME_KEYWORDS = config["trivial_name_keywords"]
 
 class AnimalDataParser:
+    """
+    Parser class to extract animal names, collateral adjectives, and relevant links from
+    the Wikipedia page HTML content of animal names.
+    """
 
-    
     @timing_decorator
     def parse_wikipedia_page(self, html_content: str) -> List[Tuple[str, str, List[str]]]:
+        """
+        Parses the provided Wikipedia HTML content to extract tuples of:
+        (animal_name, collateral_adjective, list_of_links).
+
+        Args:
+            html_content (str): Raw HTML content of the Wikipedia page.
+
+        Returns:
+            List[Tuple[str, str, List[str]]]: List of tuples, each containing:
+                - animal_name (str)
+                - collateral_adjective (str)
+                - links (List[str]): List of Wikipedia URLs related to the animal.
+        """
         soup = BeautifulSoup(html_content, 'html.parser')
         animal_data = []
 
@@ -30,7 +46,7 @@ class AnimalDataParser:
 
             header_cells = rows[0].find_all(['th', 'td'])
             collateral_idx = -1
-            trivial_name_idx = 1  # שם החיה לרוב בעמודה 1
+            trivial_name_idx = 1  # Animal name usually in column 1
 
             for idx, cell in enumerate(header_cells):
                 header_text = cell.get_text(strip=True).lower()
@@ -69,11 +85,29 @@ class AnimalDataParser:
 
 
     def _extract_text_from_cell(self, cell: Tag) -> str:
+        """
+        Cleans and extracts text content from a table cell, using configured regex-based cleanup.
+
+        Args:
+            cell (Tag): BeautifulSoup Tag object representing a table cell.
+
+        Returns:
+            str: Cleaned text content from the cell.
+        """
         text = cell.get_text(separator=' ', strip=True)
         return clean_text_with_config(text)
 
 
     def _extract_links_from_cell(self, cell: Tag) -> List[str]:
+        """
+        Extracts full Wikipedia URLs from anchor tags within a table cell.
+
+        Args:
+            cell (Tag): BeautifulSoup Tag object representing a table cell.
+
+        Returns:
+            List[str]: List of full Wikipedia URLs found in the cell.
+        """
         links = []
         for a_tag in cell.find_all('a', href=True):
             href = a_tag['href']

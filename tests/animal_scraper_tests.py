@@ -1,4 +1,3 @@
-
 import pytest
 from src.core.parser import AnimalDataParser
 from src.core.models import AnimalEntry, ScrapingConfig, get_default_tmp_dir
@@ -12,9 +11,14 @@ from src.utils.config_loader import load_config
 
 @pytest.fixture
 def parser():
+    """Fixture to instantiate the AnimalDataParser."""
     return AnimalDataParser()
 
 def test_multiple_adjectives(parser):
+    """
+    Test that multiple collateral adjectives for a single animal are correctly parsed,
+    and that each adjective results in a separate tuple with the animal and links.
+    """
     html = """
     <table class="wikitable">
         <tr><th>Animal</th><th>Collateral adjective</th></tr>
@@ -28,6 +32,13 @@ def test_multiple_adjectives(parser):
 
 
 def test_model_validation_and_config_defaults():
+    """
+    Test AnimalEntry model validation and default ScrapingConfig values.
+    Validates:
+    - Proper field values are accepted.
+    - Empty or whitespace-only strings raise ValidationError.
+    - ScrapingConfig default values and directories are correctly set.
+    """
     
     entry = AnimalEntry(
         animal_name="Tiger",
@@ -55,6 +66,10 @@ def test_model_validation_and_config_defaults():
 
 @pytest.mark.asyncio
 async def test_create_animal_entries_basic():
+    """
+    Test async creation of AnimalEntry objects, mocking image fetching methods.
+    Ensures that entries are correctly created with expected values.
+    """
     scraper = AnimalScraper()
     
     scraper.image_finder.find_image_from_url_async = AsyncMock(return_value="https://example.com/image.jpg")
@@ -76,9 +91,12 @@ async def test_create_animal_entries_basic():
         assert entry.image_url == "https://example.com/image.jpg"
 
 def test_config_keywords():
+    """
+    Test that the loaded configuration contains expected keywords
+    and that they are lists.
+    """
     config = load_config()
     assert "collateral_keywords" in config
     assert "trivial_name_keywords" in config
     assert isinstance(config["collateral_keywords"], list)
     assert isinstance(config["trivial_name_keywords"], list)
-

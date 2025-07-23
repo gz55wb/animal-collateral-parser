@@ -2,7 +2,7 @@ import aiohttp
 import time
 import requests
 import asyncio
-from typing import  List, Optional, Tuple
+from typing import List, Optional, Tuple
 from src.core.models import AnimalEntry, ScrapingConfig
 from src.core.parser import AnimalDataParser
 from pathlib import Path
@@ -27,7 +27,7 @@ class AnimalScraper:
         self.image_downloader = ImageDownloader(self.config)
         self.report_generator = HTMLReportGenerator(self.config)
         
-        # Ensure image directory exists
+        # Ensure the image directory exists
         self.config.image_dir.mkdir(parents=True, exist_ok=True)
     
     @timing_decorator
@@ -139,7 +139,7 @@ class AnimalScraper:
             async with semaphore:
                 return await self.image_downloader.download_image(session, entry)
         
-        # Download images concurrently
+        # Download images concurrently with limited concurrency
         connector = aiohttp.TCPConnector(limit_per_host=5)
         timeout = aiohttp.ClientTimeout(total=self.config.request_timeout)
         
@@ -151,13 +151,14 @@ class AnimalScraper:
             tasks = [download_with_semaphore(session, entry) for entry in entries_with_images]
             updated_entries = await asyncio.gather(*tasks, return_exceptions=True)
         
-        # Replace entries with updated versions (handle exceptions)
+        # Replace entries with updated versions, handling exceptions
         entry_map = {}
         for i, result in enumerate(updated_entries):
             if not isinstance(result, Exception):
-                entry_map[entries_with_images[i].animal_name + entries_with_images[i].collateral_adjective] = result
+                key = entries_with_images[i].animal_name + entries_with_images[i].collateral_adjective
+                entry_map[key] = result
         
-        # Update original list
+        # Update the original list of animal entries
         for i, entry in enumerate(animal_entries):
             key = entry.animal_name + entry.collateral_adjective
             if key in entry_map:
