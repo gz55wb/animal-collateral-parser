@@ -2,7 +2,7 @@ import aiohttp
 import time
 import requests
 import asyncio
-from typing import Dict, List, Optional, Tuple, Any
+from typing import  List, Optional, Tuple
 from src.core.models import AnimalEntry, ScrapingConfig
 from src.core.parser import AnimalDataParser
 from pathlib import Path
@@ -95,8 +95,8 @@ class AnimalScraper:
         """
         entries = []
 
-        timeout = aiohttp.ClientTimeout(total=10)
-        connector = aiohttp.TCPConnector(limit_per_host=10)
+        timeout = aiohttp.ClientTimeout(total=self.config.request_timeout)
+        connector = aiohttp.TCPConnector(limit_per_host=self.config.max_concurrent_downloads)
 
         async with aiohttp.ClientSession(connector=connector, timeout=timeout, headers={'User-Agent': 'AnimalScraper/1.0'}) as session:
 
@@ -108,7 +108,7 @@ class AnimalScraper:
                         image_url = await self.image_finder.find_image_from_url_async(links[0], session)
 
                     if not image_url:
-                        image_url = await self.image_finder.find_animal_image(animal_name)
+                        image_url = self.image_finder.find_animal_image(animal_name)
 
                     entry = AnimalEntry(
                         animal_name=animal_name,
